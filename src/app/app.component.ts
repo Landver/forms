@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+// tslint:disable-next-line:component-class-suffix
+export class FormsDemoApp {
   title = 'forms';
 }
