@@ -11,13 +11,25 @@ export class DemoFormSkuWithBuilderComponent implements OnInit {
 
   constructor(fb: FormBuilder) {
     this.myForm = fb.group({
-      'sku': ['', Validators.required]
+      'sku': ['', Validators.compose([Validators.required, this.skuValidator])]
     });
+
+    // this.myForm.controls['sku'].valueChanges.subscribe(
+    //   (value: string) => {
+    //     console.log('sku changed to:', value);
+    //   }
+    // );
+
+    this.myForm.valueChanges.subscribe(
+      (form: any) => {
+        console.log('form changed to:', form);
+      }
+    );
   }
 
   skuValidator(control: FormControl): { [s: string]: boolean } {
     if (!control.value.match(/^123/)) {
-      return {invalidSku: true};
+      return {'invalidSku': true};
     }
   }
 
